@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<!-- definition of simple elements -->
+<xs:element name="invoice_number" type="xs:string"/>
+<xs:element name="name" type="xs:string"/>
+<xs:element name="surname" type="xs:string"/>
+<xs:element name="street" type="xs:string"/>
+<xs:element name="house_number" type="xs:string"/>
+<xs:element name="city" type="xs:string"/>
+<xs:element name="country" type="xs:string"/>
+<xs:element name="post_code" type="xs:string"/>
+<xs:element name="product_name" type="xs:string"/>
+<xs:element name="quantity" type="xs:positiveInteger"/>
+<xs:element name="price" type="xs:decimal"/>
+
+<!-- definition of attributes -->
+<xs:attribute name="invoice_id" type="xs:long"/>
+
+<!-- definition of complex elements -->
+<xs:element name="address">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="street"/>
+      <xs:element ref="house_number"/>
+      <xs:element ref="post_code"/>
+      <xs:element ref="city"/>
+      <xs:element ref="country"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="buyer">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="name"/>
+      <xs:element ref="surname"/>
+      <xs:element ref="address"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="vendor">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="name"/>
+      <xs:element ref="surname"/>
+      <xs:element ref="address"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="products">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="product_name"/>
+      <xs:element ref="quantity"/>
+      <xs:element ref="price"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+
+<xs:element name="invoice">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="invoice_number"/>
+      <xs:element ref="vendor"/>
+      <xs:element ref="buyer"/>
+      <xs:element ref="products" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute ref="invoice_id" use="required"/>
+  </xs:complexType>
+</xs:element>
+
+</xs:schema>
+
+	
